@@ -3,6 +3,10 @@ import telebot
 
 bot = telebot.TeleBot(config.TOKEN)
 
-print(bot.get_me())
+
+@bot.channel_post_handler()
+def channel_post(message):
+	print(message)
+
 
 bot.polling(none_stop=True)
