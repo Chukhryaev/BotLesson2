@@ -15,9 +15,14 @@ def channel_post(message):
                           reply_markup=buttons)
 
 
-@bot.callback_query_handler(func=lambda call: True)
-def query(call):
-    bot.answer_callback_query(call.id, text=f"You voted {call.data}")
+@bot.callback_query_handler(func=lambda call: call.data == "like")
+def callback_like(call):
+    bot.answer_callback_query(call.id, text=f"You voted Like")
+
+
+@bot.callback_query_handler(func=lambda call: call.data == "dislike")
+def callback_dislike(call):
+    bot.answer_callback_query(call.id, text=f"You voted Dislike")
 
 
 bot.polling(none_stop=True)
